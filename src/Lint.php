@@ -6,51 +6,21 @@
 //! @author Filippo F. Fadda
 
 
+namespace Lint;
+
+
 //! @brief TODO
-class Lint {
-
-  private $sourceCode;
-
+final class Lint {
 
   //! @brief TODO
-  public function loadFromFile($fileName) {
-    $this->sourceCode = "";
-
-    if (file_exists($fileName)) {
-      $fd = fopen($fileName, "r");
-
-      if (is_resource($fd)) {
-        while (!feof($fd))
-          $this->sourceCode .= fgets($fd);
-      }
-      else
-        throw new \Exception("Cannot open the file.");
-    }
-    else
-      throw new \Exception("\$fileName doesn't exist.");
-  }
-
-
-  //! @brief TODO
-  public function loadFromString($str) {
-    $this->sourceCode = "";
-
-    if (is_string($str))
-      $this->sourceCode = $str;
-    else
-      throw new \Exception("\$str must be a string.");
-  }
-
-
-  //! @brief TODO
-  public function checkSyntax($addTags = FALSE) {
+  private static function checkSyntax($sourceCode, $addTags = FALSE) {
     if ($addTags)
       // We add the PHP tags, else the lint ignores the code. The PHP command line option -r doesn't work.
-      $this->sourceCode = "<?php ".$this->sourceCode." ?>";
+      $sourceCode = "<?php ".$sourceCode." ?>";
 
     // Try to create a temporary physical file. The function 'proc_open' doesn't allow to use a memory file.
     if ($fd = fopen("php://temp", "r+")) {
-      fputs($fd, $this->sourceCode); // Writes the message body.
+      fputs($fd, $sourceCode); // Writes the message body.
       // We don't need to flush because we call rewind.
       rewind($fd); // Sets the pointer to the beginning of the file stream.
 
@@ -96,6 +66,36 @@ class Lint {
     }
     else
       throw new \Exception("Cannot create the temporary file with the source code.");
+  }
+
+
+  //! @brief TODO
+  public static function checkSourceFile($fileName) {
+    if (file_exists($fileName)) {
+      $fd = fopen($fileName, "r");
+
+      if (is_resource($fd)) {
+        $sourceCode = "";
+
+        while (!feof($fd))
+          $sourceCode .= fgets($fd);
+
+        self::checkSyntax($sourceCode);
+      }
+      else
+        throw new \Exception("Cannot open the file.");
+    }
+    else
+      throw new \Exception("\$fileName doesn't exist.");
+  }
+
+
+  //! @brief TODO
+  public static function checkSourceCode($str, $addTags = TRUE) {
+    if (is_string($str))
+      self::checkSyntax($str, $addTags);
+    else
+      throw new \Exception("\$str must be a string.");
   }
 
 }
