@@ -1,0 +1,1 @@
+Lint is a wrapper to 'PHP -l' command.
