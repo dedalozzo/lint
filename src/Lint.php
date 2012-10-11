@@ -9,10 +9,9 @@
 namespace Lint;
 
 
-//! @brief TODO
+//! @brief Lint is a wrapper to 'PHP -l' command.
 final class Lint {
 
-  //! @brief TODO
   private static function checkSyntax($sourceCode, $addTags = FALSE) {
     if ($addTags)
       // We add the PHP tags, else the lint ignores the code. The PHP command line option -r doesn't work.
@@ -20,8 +19,7 @@ final class Lint {
 
     // Try to create a temporary physical file. The function 'proc_open' doesn't allow to use a memory file.
     if ($fd = fopen("php://temp", "r+")) {
-      fputs($fd, $sourceCode); // Writes the message body.
-      // We don't need to flush because we call rewind.
+      fputs($fd, $sourceCode); // We don't need to flush because we call rewind.
       rewind($fd); // Sets the pointer to the beginning of the file stream.
 
       $dspec = array(
@@ -69,7 +67,10 @@ final class Lint {
   }
 
 
-  //! @brief TODO
+  //! @brief Makes the syntax check of the specified file. If an error occurs, generate an exception.
+  // TODO document exceptions
+  //! @return NULL
+  //! @warning File source code must be included in PHP tags.
   public static function checkSourceFile($fileName) {
     if (file_exists($fileName)) {
       $fd = fopen($fileName, "r");
@@ -90,7 +91,9 @@ final class Lint {
   }
 
 
-  //! @brief TODO
+  //! @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
+  // TODO document exceptions
+  //! @return NULL
   public static function checkSourceCode($str, $addTags = TRUE) {
     if (is_string($str))
       self::checkSyntax($str, $addTags);
