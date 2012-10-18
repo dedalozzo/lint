@@ -6,7 +6,7 @@
 //! @author Filippo F. Fadda
 
 
-namespace FFF\Lint;
+namespace Lint;
 
 
 //! @brief Lint is a wrapper to 'PHP -l' command.
