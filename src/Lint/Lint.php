@@ -68,9 +68,10 @@ final class Lint {
 
 
   //! @brief Makes the syntax check of the specified file. If an error occurs, generate an exception.
-  // TODO document exceptions
-  //! @return NULL
   //! @warning File source code must be included in PHP tags.
+  //! @param[in] string $fileName The file name you want check.
+  //! @exception Exception <c>Message: <i>Cannot open the file $fileName.</i></c>
+  //! @exception Exception <c>Message: <i>\$fileName doesn't exist.</i></c>
   public static function checkSourceFile($fileName) {
     if (file_exists($fileName)) {
       $fd = fopen($fileName, "r");
@@ -84,7 +85,7 @@ final class Lint {
         self::checkSyntax($sourceCode);
       }
       else
-        throw new \Exception("Cannot open the file.");
+        throw new \Exception("Cannot open the file $fileName.");
     }
     else
       throw new \Exception("\$fileName doesn't exist.");
@@ -92,8 +93,10 @@ final class Lint {
 
 
   //! @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
-  // TODO document exceptions
-  //! @return NULL
+  //! @exception Exception <c>Message: <i>\$str must be a string.</i></c>
+  //! @param[in] string $str The source code.
+  //! @param[in] boolean $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs them or it
+  //! will raise an exception.
   public static function checkSourceCode($str, $addTags = TRUE) {
     if (is_string($str))
       self::checkSyntax($str, $addTags);
