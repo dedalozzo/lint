@@ -95,8 +95,8 @@ final class Lint {
   //! @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
   //! @exception Exception <c>Message: <i>\$str must be a string.</i></c>
   //! @param[in] string $str The source code.
-  //! @param[in] boolean $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs them or it
-  //! will raise an exception.
+  //! @param[in] boolean $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
+  //! them or it will raise an exception.
   public static function checkSourceCode($str, $addTags = TRUE) {
     if (is_string($str))
       self::checkSyntax($str, $addTags);
