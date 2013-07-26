@@ -4,7 +4,7 @@
     "keywords": ["lint", "syntax checker"],
     "homepage": "http://github.com/dedalozzo/Lint",
     "type": "library",
-    "license": "Apache License 2.0",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Filippo Fadda",
