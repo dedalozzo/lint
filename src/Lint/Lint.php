@@ -6,6 +6,7 @@
 //! @author Filippo F. Fadda
 
 
+//! @brief Global namespace for the Lint class.
 namespace Lint;
 
 
@@ -47,31 +48,29 @@ final class Lint {
         fclose($fd);
         fclose($pipes[1]);
         fclose($pipes[2]);
-        proc_close($proc);
+        $exitCode = proc_close($proc);
 
-        if (preg_match("/\ANo syntax errors/", $output) === 0) {
+        if ($exitCode != 0) {
           $pattern = array("/\APHP Parse error:  /",
             "/in - /",
             "/\z -\n/");
 
           $error = ucfirst(preg_replace($pattern, "", $error));
 
-          throw new \Exception($error);
+          throw new \RuntimeException($error);
         }
       }
       else
-        throw new \Exception("Cannot execute the 'PHP -l' command.");
+        throw new \RuntimeException("Cannot execute the 'PHP -l' command.");
     }
     else
-      throw new \Exception("Cannot create the temporary file with the source code.");
+      throw new \RuntimeException("Cannot create the temporary file with the source code.");
   }
 
 
   //! @brief Makes the syntax check of the specified file. If an error occurs, generate an exception.
   //! @warning File source code must be included in PHP tags.
   //! @param[in] string $fileName The file name you want check.
-  //! @exception Exception <c>Message: <i>Cannot open the file $fileName.</i></c>
-  //! @exception Exception <c>Message: <i>\$fileName doesn't exist.</i></c>
   public static function checkSourceFile($fileName) {
     if (file_exists($fileName)) {
       $fd = fopen($fileName, "r");
@@ -85,15 +84,14 @@ final class Lint {
         self::checkSyntax($sourceCode);
       }
       else
-        throw new \Exception("Cannot open the file $fileName.");
+        throw new \RuntimeException("Cannot open the file $fileName.");
     }
     else
-      throw new \Exception("\$fileName doesn't exist.");
+      throw new \RuntimeException("\$fileName doesn't exist.");
   }
 
 
   //! @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
-  //! @exception Exception <c>Message: <i>\$str must be a string.</i></c>
   //! @param[in] string $str The source code.
   //! @param[in] boolean $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
   //! them or it will raise an exception.
@@ -101,7 +99,7 @@ final class Lint {
     if (is_string($str))
       self::checkSyntax($str, $addTags);
     else
-      throw new \Exception("\$str must be a string.");
+      throw new \RuntimeException("\$str must be a string.");
   }
 
 }
