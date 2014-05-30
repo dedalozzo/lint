@@ -1,17 +1,23 @@
 <?php
 
-//! @file Lint.php
-//! @brief This file contains the Lint class.
-//! @details
-//! @author Filippo F. Fadda
+/*
+ * @file Lint.php
+ * @brief This file contains the Lint class.
+ * @details
+ * @author Filippo F. Fadda
+ */
 
 
-//! @brief Global namespace for the Lint class.
+
+//! Global namespace.
 namespace Lint;
 
 
-//! @brief Lint is a wrapper to 'PHP -l' command.
+/*
+ * @brief Lint is a wrapper to 'PHP -l' command.
+*/
 final class Lint {
+
 
   private static function checkSyntax($sourceCode, $addTags = FALSE) {
     if ($addTags)
@@ -68,9 +74,11 @@ final class Lint {
   }
 
 
-  //! @brief Makes the syntax check of the specified file. If an error occurs, generate an exception.
-  //! @warning File source code must be included in PHP tags.
-  //! @param[in] string $fileName The file name you want check.
+  /*
+   * @brief Makes the syntax check of the specified file. If an error occurs, generate an exception.
+   * @warning File source code must be included in PHP tags.
+   * @param[in] string $fileName The file name you want check.
+   */
   public static function checkSourceFile($fileName) {
     if (file_exists($fileName)) {
       $fd = fopen($fileName, "r");
@@ -91,10 +99,12 @@ final class Lint {
   }
 
 
-  //! @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
-  //! @param[in] string $str The source code.
-  //! @param[in] boolean $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
-  //! them or it will raise an exception.
+  /*
+   * @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
+   * @param[in] string $str The source code.
+   * @param[in] bool $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
+   * them or it will raise an exception.
+   */
   public static function checkSourceCode($str, $addTags = TRUE) {
     if (is_string($str))
       self::checkSyntax($str, $addTags);
