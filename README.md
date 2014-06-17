@@ -88,7 +88,7 @@ Makes the syntax check of the given source code. If an error occurs, generates a
 
   The source code.
 
-* str
+* addTags
 
   Tells if you want add PHP tags to the source code, because PHP lint needs them or it will raise an exception.
 
