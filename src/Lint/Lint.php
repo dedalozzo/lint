@@ -8,23 +8,22 @@
  */
 
 
-
 //! Global namespace.
 namespace Lint;
 
 
 /*
- * @brief Lint is a wrapper to 'PHP -l' command.
+ * @brief Lint is a wrapper to `php -l` command.
 */
 final class Lint {
 
 
-  private static function checkSyntax($sourceCode, $addTags = FALSE) {
+  protected static function checkSyntax($sourceCode, $addTags = FALSE) {
     if ($addTags)
       // We add the PHP tags, else the lint ignores the code. The PHP command line option -r doesn't work.
       $sourceCode = "<?php ".$sourceCode." ?>";
 
-    // Try to create a temporary physical file. The function 'proc_open' doesn't allow to use a memory file.
+    // Try to create a temporary physical file. The function `proc_open` doesn't allow to use a memory file.
     if ($fd = fopen("php://temp", "r+")) {
       fputs($fd, $sourceCode); // We don't need to flush because we call rewind.
       rewind($fd); // Sets the pointer to the beginning of the file stream.
@@ -67,7 +66,7 @@ final class Lint {
         }
       }
       else
-        throw new \RuntimeException("Cannot execute the 'PHP -l' command.");
+        throw new \RuntimeException("Cannot execute the `php -l` command.");
     }
     else
       throw new \RuntimeException("Cannot create the temporary file with the source code.");
@@ -75,7 +74,7 @@ final class Lint {
 
 
   /*
-   * @brief Makes the syntax check of the specified file. If an error occurs, generate an exception.
+   * @brief Makes the syntax check of the specified file. If an error occurs, generates an exception.
    * @warning File source code must be included in PHP tags.
    * @param[in] string $fileName The file name you want check.
    */
@@ -100,7 +99,7 @@ final class Lint {
 
 
   /*
-   * @brief Makes the syntax check of the given source code. If an error occurs, generate an exception.
+   * @brief Makes the syntax check of the given source code. If an error occurs, generates an exception.
    * @param[in] string $str The source code.
    * @param[in] bool $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
    * them or it will raise an exception.
