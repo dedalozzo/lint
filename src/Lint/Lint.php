@@ -91,10 +91,10 @@ final class Lint {
         self::checkSyntax($sourceCode);
       }
       else
-        throw new \RuntimeException("Cannot open the file $fileName.");
+        throw new \RuntimeException("Cannot open the file.");
     }
     else
-      throw new \RuntimeException("\$fileName doesn't exist.");
+      throw new \RuntimeException("File not found.");
   }
 
 
