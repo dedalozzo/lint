@@ -6,7 +6,7 @@ Lint is a wrapper to `php -l` command.
 Composer Installation
 ---------------------
 
-To install Pygmentize, you first need to install [Composer](http://getcomposer.org/), a Package Manager for
+To install Lint, you first need to install [Composer](http://getcomposer.org/), a Package Manager for
 PHP, following those few [steps](http://getcomposer.org/doc/00-intro.md#installation-nix):
 
 ```sh
@@ -116,4 +116,4 @@ Filippo F. Fadda - <filippo.fadda@programmazione.it> - <http://www.linkedin.com/
 
 License
 -------
-Pygmentize is licensed under the Apache License, Version 2.0 - see the LICENSE file for details.
+Lint is licensed under the Apache License, Version 2.0 - see the LICENSE file for details.
