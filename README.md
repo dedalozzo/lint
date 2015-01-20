@@ -53,7 +53,7 @@ Methods
 
 ```php
 public static function checkSourceFile(
-    $fileName,
+    $fileName
 )
 ```
 
