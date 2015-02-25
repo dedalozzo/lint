@@ -1,3 +1,9 @@
+[![Latest Stable Version](https://poser.pugx.org/3f/lint/v/stable.png)](https://packagist.org/packages/3f/lint)
+[![Latest Unstable Version](https://poser.pugx.org/3f/lint/v/unstable.png)](https://packagist.org/packages/3f/lint)
+[![License](https://poser.pugx.org/3f/lint/license.svg)](https://packagist.org/packages/3f/lint)
+[![Total Downloads](https://poser.pugx.org/3f/lint/downloads.png)](https://packagist.org/packages/3f/lint)
+
+
 Lint
 ====
 Lint is a wrapper to `php -l` command.
