@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * @file Lint.php
  * @brief This file contains the Lint class.
  * @details
@@ -12,7 +12,7 @@
 namespace Lint;
 
 
-/*
+/**
  * @brief Lint is a wrapper to `php -l` command.
 */
 final class Lint {
@@ -73,7 +73,7 @@ final class Lint {
   }
 
 
-  /*
+  /**
    * @brief Makes the syntax check of the specified file. If an error occurs, generates an exception.
    * @warning File source code must be included in PHP tags.
    * @param[in] string $fileName The file name you want check.
@@ -98,7 +98,7 @@ final class Lint {
   }
 
 
-  /*
+  /**
    * @brief Makes the syntax check of the given source code. If an error occurs, generates an exception.
    * @param[in] string $str The source code.
    * @param[in] bool $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
