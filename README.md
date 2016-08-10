@@ -1,6 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/3f/lint/v/stable.png)](https://packagist.org/packages/3f/lint)
 [![Latest Unstable Version](https://poser.pugx.org/3f/lint/v/unstable.png)](https://packagist.org/packages/3f/lint)
 [![Build Status](https://scrutinizer-ci.com/g/dedalozzo/lint/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dedalozzo/lint/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dedalozzo/lint/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dedalozzo/lint/?branch=master)
 [![License](https://poser.pugx.org/3f/lint/license.svg)](https://packagist.org/packages/3f/lint)
 [![Total Downloads](https://poser.pugx.org/3f/lint/downloads.png)](https://packagist.org/packages/3f/lint)
 
