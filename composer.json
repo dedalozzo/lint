@@ -1,8 +1,8 @@
 {
     "name": "3f/lint",
-    "description": "Lint is a wrapper to 'PHP -l' command.",
+    "description": "Lint is a wrapper to `PHP -l` command.",
     "keywords": ["lint", "syntax checker"],
-    "homepage": "http://github.com/dedalozzo/Lint",
+    "homepage": "https://github.com/dedalozzo/lint",
     "type": "library",
     "license": "Apache-2.0",
     "authors": [
