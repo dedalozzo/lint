@@ -18,6 +18,12 @@ namespace Lint;
 final class Lint {
 
 
+  /**
+   * @brief Performs the real syntax check.
+   * @param string $sourceCode The source code.
+   * @param bool $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
+   * them or it will raise an exception.
+   */
   protected static function checkSyntax($sourceCode, $addTags = FALSE) {
     if ($addTags)
       // We add the PHP tags, else the lint ignores the code. The PHP command line option -r doesn't work.
@@ -76,7 +82,7 @@ final class Lint {
   /**
    * @brief Makes the syntax check of the specified file. If an error occurs, generates an exception.
    * @warning File source code must be included in PHP tags.
-   * @param[in] string $fileName The file name you want check.
+   * @param string $fileName The file name you want check.
    */
   public static function checkSourceFile($fileName) {
     if (file_exists($fileName)) {
@@ -100,8 +106,8 @@ final class Lint {
 
   /**
    * @brief Makes the syntax check of the given source code. If an error occurs, generates an exception.
-   * @param[in] string $str The source code.
-   * @param[in] bool $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
+   * @param string $str The source code.
+   * @param bool $addTags (optional) Tells if you want add PHP tags to the source code, because PHP lint needs
    * them or it will raise an exception.
    */
   public static function checkSourceCode($str, $addTags = TRUE) {
